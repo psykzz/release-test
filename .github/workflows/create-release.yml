@@ -27,6 +27,8 @@ jobs:
   release:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
     - uses: actions/checkout@v3
     
@@ -44,7 +46,7 @@ jobs:
       id: version
       run: |
         npm version ${{ github.event.inputs.name }} 
-        echo version=$(git describe --tags --abbrev=0) > $GITHUB_OUTPUT
+        echo version=$(git describe --tags --abbrev=0)\n >> $GITHUB_OUTPUT
       
     - name: Push changes
       run: git push --tags && git push
@@ -61,5 +63,5 @@ jobs:
     uses: psykzz/release-test/.github/workflows/deploy.yml@main
     with: 
       branch: stage
-      version: ${{ release.steps.version.outputs.version }}
+      version: ${{ needs.release.outputs.version }}
    
