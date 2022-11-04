@@ -56,8 +56,6 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh release create ${{ steps.version.outputs.version }} --generate-notes
       
-      
-      
   deploy:
     needs: release
     uses: psykzz/release-test/.github/workflows/deploy.yml@main
