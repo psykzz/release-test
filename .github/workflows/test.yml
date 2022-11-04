@@ -24,8 +24,6 @@ jobs:
       with:
         node-version: '16.x'
 
-    - name: Bump Version
-      run: | 
-       - npm install
-       - npm test
+    - run: npm install
+    - run: npm test
       
