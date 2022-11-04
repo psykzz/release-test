@@ -42,7 +42,7 @@ jobs:
       
       
     - name: Push changes
-      run: git push  
+      run: git push --tags  
       
     - name: Create github release
       env:
