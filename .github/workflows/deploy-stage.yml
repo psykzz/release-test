@@ -40,9 +40,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
-    - name: Checkout specific release
-      run: git checkout ${{ inputs.version }}
-     
+      with:
+        ref: ${{ inputs.version }}
+        
     - name: Push to branch
       run: git push origin ${{ inputs.branch }}
