@@ -24,7 +24,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: psykzz/release-test/.github/workflows/test.yml@main
+    - uses: psykzz/release-test/.github/workflows/test.yml@main
 
   deploy:
     runs-on: ubuntu-latest
