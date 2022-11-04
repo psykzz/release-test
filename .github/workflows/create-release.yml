@@ -24,7 +24,7 @@ jobs:
   test:
     uses: psykzz/release-test/.github/workflows/test.yml@main
 
-  deploy:
+  release:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -41,8 +41,10 @@ jobs:
         node-version: '16.x'
 
     - name: Bump Version
-      run: npm version ${{ github.event.inputs.name }} 
-      
+      id: version
+      run: |
+        npm version ${{ github.event.inputs.name }} 
+        echo version=$(git describe --tags --abbrev=0) > $GITHUB_OUTPUT
       
     - name: Push changes
       run: git push --tags && git push
@@ -50,5 +52,13 @@ jobs:
     - name: Create github release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: gh release create `echo $(git describe --tags --abbrev=0)` --generate-notes
+      run: gh release create ${{ steps.version.outputs.version }} --generate-notes
+      
+      
+      
+  deploy:
+    uses: psykzz/release-test/.github/workflows/deploy.yml@main
+    with: 
+      branch: stage
+      version: ${{ steps.version.outputs.version }}
    
