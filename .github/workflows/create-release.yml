@@ -57,8 +57,9 @@ jobs:
       
       
   deploy:
+    needs: release
     uses: psykzz/release-test/.github/workflows/deploy.yml@main
     with: 
       branch: stage
-      version: ${{ steps.version.outputs.version }}
+      version: ${{ release.steps.version.outputs.version }}
    
