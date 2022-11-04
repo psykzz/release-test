@@ -47,5 +47,5 @@ jobs:
     - name: Create github release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: gh release create ${{git describe --tags --abbrev=0}} --generate-notes
+      run: gh release create `echo $(git describe --tags --abbrev=0)` --generate-notes
    
