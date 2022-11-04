@@ -6,12 +6,32 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Deploy staging
+name: Deploy
 
 on:
-  release:
-    types: [published]
-
+  workflow_dispatch: 
+    inputs:
+      branch:
+        type: choice
+        description: What branch to deploy to
+        options:
+         - stage
+         - prod
+      
+      version:
+        type: string
+        description: What version tag to deploy
+        
+  workflow_call:
+    inputs:
+      branch:
+        type: string
+        description: What branch to deploy to
+        default: stage
+      
+      version:
+        type: string
+        description: What version tag to deploy
 
 jobs:
   deploy:
@@ -21,23 +41,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Setup git user
-      run: |
-        git config --global user.name "GitHub Action"
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    
-
     - name: Checkout specific release
-      run: git checkout ${ GITHUB_REF } 
-      
-         
-    - name: Set up Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-        
-    - name: Install deps
-      run: npm install
-      
-    - name: Install deps
-      run: npm test
+      run: git checkout ${{ intputs.version }}
+     
+    - name: Push to branch
+      run: git push origin ${{ inputs.branch }}
