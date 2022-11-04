@@ -41,8 +41,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        fetch-depth: 0
         ref: ${{ inputs.version }}
         
+    - run: git switch -C stage    
     - name: Push to branch
       run: git push origin stage
