@@ -44,4 +44,4 @@ jobs:
         ref: ${{ inputs.version }}
         
     - name: Push to branch
-      run: git push origin HEAD:${{ inputs.branch }}
+      run: git push origin HEAD:/refs/head/${{ inputs.branch }}
