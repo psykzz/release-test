@@ -25,6 +25,7 @@ jobs:
     uses: psykzz/release-test/.github/workflows/test.yml@main
 
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
