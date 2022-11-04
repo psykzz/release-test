@@ -42,7 +42,7 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Checkout specific release
-      run: git checkout ${{ intputs.version }}
+      run: git checkout ${{ inputs.version }}
      
     - name: Push to branch
       run: git push origin ${{ inputs.branch }}
