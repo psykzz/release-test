@@ -6,14 +6,18 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Release Version
+name: Create Release
 
 on:
-  release:
-    types: [published]
-
-permissions:
-  contents: read
+  workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: Release type
+        options: 
+        - patch
+        - minor
+        - major
 
 jobs:
   deploy:
@@ -29,5 +33,5 @@ jobs:
         node-version: '16.x'
 
     - name: Bump Version
-      run: echo "$GITHUB_REF | $GITHUB_SHA" 
+      run: npm version ${{ github.event.inputs.name }} 
    
