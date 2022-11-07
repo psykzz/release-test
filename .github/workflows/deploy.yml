@@ -50,8 +50,8 @@ jobs:
     - name: Push to branch
       run: |
         git fetch --tags
-        git merge ${{ inputs.version }}
-        git push
+        git reset --hard ${{ inputs.version }}
+        git push --force-with-lease
         
     - name: Output
       run: |
