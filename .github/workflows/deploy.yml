@@ -44,4 +44,6 @@ jobs:
         ref: ${{ inputs.version }}
         
     - name: Push to branch
-      run: git rebase --onto stage HEAD
+      run: |
+        git checkout -b new-stage
+        git rebase --onto stage new-stage
