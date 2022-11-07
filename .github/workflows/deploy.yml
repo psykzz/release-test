@@ -37,6 +37,10 @@ jobs:
   deploy:
 
     runs-on: ubuntu-latest
+    
+    environment: 
+      name: ${{ inputs.branch }}
+      url: https://${{ inputs.branch }}.shop.riotgames.com
 
     steps:
     - uses: actions/checkout@v3
