@@ -11,7 +11,7 @@ name: Create Release
 on:
   workflow_dispatch:
     inputs:
-      name:
+      type:
         type: choice
         description: Release type
         options: 
@@ -45,7 +45,7 @@ jobs:
     - name: Bump Version
       id: version
       run: |
-        npm version ${{ github.event.inputs.name }} 
+        npm version ${{ github.event.inputs.type }} 
         echo version=$(git describe --tags --abbrev=0) >> $GITHUB_OUTPUT
       
     - name: Push changes
