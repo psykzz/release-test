@@ -41,9 +41,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: ${{ inputs.version }}
+        ref: ${{ inputs.branch }}
         
     - name: Push to branch
       run: |
-        git checkout -b new-stage
-        git rebase --onto stage new-stage
+        git reset --hard ${{ inputs.branch }}
+        git push
