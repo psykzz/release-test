@@ -45,5 +45,5 @@ jobs:
         
     - name: Push to branch
       run: |
-        git reset --hard ${{ inputs.branch }}
+        git reset --hard ${{ inputs.version }}
         git push
