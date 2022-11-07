@@ -52,7 +52,7 @@ jobs:
     - name: Output
       run: |
         echo "# Deploy Summary" >> $GITHUB_STEP_SUMMARY
-        echo "This deploy pushes `${{ inputs.version }}` to `${{ inputs.branch }}`" >> $GITHUB_STEP_SUMMARY
+        echo "This deploy pushes \`${{ inputs.version }}\` to \`${{ inputs.branch }}\`" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
         echo "- Version: \`${{ inputs.version }}\`" >> $GITHUB_STEP_SUMMARY
         echo "- Branch: \`${{ inputs.branch }}\`" >> $GITHUB_STEP_SUMMARY
